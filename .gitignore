@@ -1,0 +1,12 @@
+target/
+*.class
+*.jar
+.idea/
+*.iml
+frontend\node_modules/
+frontend\dist/
+frontend\.angular/
+.env
+application-local.yml
+Thumbs.db
+*.log

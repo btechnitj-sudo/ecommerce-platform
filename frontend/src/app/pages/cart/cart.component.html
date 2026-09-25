@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="page-container">
+  <h1>Your Cart</h1>
+
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <div *ngIf="items.length === 0" class="empty-cart">
+    <p>Your cart is empty.</p>
+    <a routerLink="/products">Continue Shopping</a>
+  </div>
+
+  <div class="cart-layout" *ngIf="items.length > 0">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of items">
+        <div class="item-info">
+          <h4>{{ item.name }}</h4>
+          <p class="unit-price">₹{{ item.price }} each</p>
+        </div>
+
+        <div class="quantity-stepper">
+          <button (click)="decrement(item)">−</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increment(item)">+</button>
+        </div>
+
+        <div class="item-total">₹{{ item.price * item.quantity }}</div>
+
+        <button class="remove-btn" (click)="remove(item)">✕</button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row">
+        <span>Total</span>
+        <span class="summary-total">₹{{ total }}</span>
+      </div>
+      <button class="checkout-btn" (click)="placeOrder()" [disabled]="isPlacingOrder">
+  {{ isPlacingOrder ? 'Processing Payment...' : 'Place Order' }}
+</button>
+    </div>
+  </div>
+</div>

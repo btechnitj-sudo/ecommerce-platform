@@ -1,0 +1,39 @@
+
+  server:
+    port: 8080
+
+  spring:
+    application:
+      name: api-gateway
+
+    cloud:
+      gateway:
+        server:
+          webflux:
+            routes:
+              - id: user-service
+                uri: ${USER_SERVICE_URL}
+                predicates:
+                  - Path=/api/auth/**
+
+              - id: inventory-service
+                uri: ${INVENTORY_SERVICE_URL}
+                predicates:
+                  - Path=/api/products/**
+
+              - id: order-service
+                uri: ${ORDER_SERVICE_URL}
+                predicates:
+                  - Path=/api/orders/**
+
+  jwt:
+    secret: c3VwZXItc2VjcmV0LWtleS1mb3ItZWNvbW1lcmNlLXBsYXRmb3JtLWNoYW5nZS10aGlzLWluLXByb2R1Y3Rpb24=
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health
+    endpoint:
+      health:
+        show-details: never

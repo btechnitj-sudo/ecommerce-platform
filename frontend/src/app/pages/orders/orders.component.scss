@@ -1,0 +1,137 @@
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .back-link {
+    color: #4a90d9;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: #888;
+  padding: 3rem 0;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.order-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  .order-id {
+    font-weight: bold;
+  }
+
+  .order-status {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  text-transform: capitalize;
+
+  &.status-pending {
+    background: #fff4e0;
+    color: #a06400;
+  }
+
+  &.status-confirmed {
+    background: #eef2ff;
+    color: #3b4bdb;
+  }
+
+  &.status-shipped {
+    background: #e0f2ff;
+    color: #0369a1;
+  }
+
+  &.status-delivered {
+    background: #e6f7ed;
+    color: #1a7a3f;
+  }
+
+  &.status-cancelled {
+    background: #fdeaea;
+    color: #b02a2a;
+  }
+
+  &.status-payment_failed {
+    background: #fdeaea;
+    color: #b02a2a;
+  }
+}
+
+.order-items {
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0.8rem 0;
+  margin-bottom: 0.8rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+.order-total {
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+.order-date {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.success-message {
+  background: #e6f7ed;
+  color: #1a7a3f;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.cancel-btn {
+  margin-top: 0.75rem;
+  background: #fdeaea;
+  color: #b02a2a;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover { background: #f9d5d5; }
+}
+
+}

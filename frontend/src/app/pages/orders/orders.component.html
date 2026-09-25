@@ -1,0 +1,42 @@
+<div class="page-container">
+  <header>
+    <h1>My Orders</h1>
+    <a routerLink="/products" class="back-link">Back to Products</a>
+  </header>
+
+  <div *ngIf="isLoading">Loading orders...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+
+  <div *ngIf="!isLoading && orders.length === 0 && !errorMessage" class="empty-state">
+    You haven't placed any orders yet.
+  </div>
+
+  <div class="orders-list" *ngIf="!isLoading">
+    <div class="order-card" *ngFor="let order of orders">
+      <div class="order-header">
+        <span class="order-id">Order #{{ order.id }}</span>
+        <span class="order-status" [class]="'status-' + order.status.toLowerCase()">{{ order.status }}</span>
+      </div>
+
+      <div class="order-items">
+        <div class="order-item" *ngFor="let item of order.items">
+          <span>{{ item.productName }} × {{ item.quantity }}</span>
+          <span>₹{{ item.unitPrice * item.quantity }}</span>
+        </div>
+      </div>
+
+      <div class="order-total">
+        Total: ₹{{ order.totalAmount }}
+      </div>
+
+      <div class="order-date">
+        Placed on {{ order.createdAt | date: 'medium' }}
+      </div>
+
+      <button class="cancel-btn" *ngIf="canCancel(order)" (click)="cancelOrder(order)">
+        Cancel Order
+      </button>
+    </div>
+  </div>
+</div>

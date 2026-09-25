@@ -1,0 +1,46 @@
+<nav class="navbar">
+  <div class="navbar-top">
+    <a routerLink="/products" class="logo">🛍️ ShopEase</a>
+
+    <form class="search-bar" (ngSubmit)="onSearch()">
+      <input
+        type="text"
+        placeholder="Search for products..."
+        [(ngModel)]="searchTerm"
+        name="navSearch"
+      />
+      <button type="submit" aria-label="Search">🔍</button>
+    </form>
+
+    <div class="nav-actions">
+      <a routerLink="/orders" routerLinkActive="active" *ngIf="currentUser">My Orders</a>
+
+      <a routerLink="/admin" routerLinkActive="active" *ngIf="currentUser?.role === 'ADMIN'">Admin</a>
+      
+      <a routerLink="/cart" class="cart-link">
+        🛒 Cart
+        <span class="cart-badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+      </a>
+
+      <ng-container *ngIf="currentUser; else loggedOut">
+        <span class="user-greeting">Hi, {{ currentUser.fullName }}</span>
+        <button (click)="logout()">Logout</button>
+      </ng-container>
+
+      <ng-template #loggedOut>
+        <a routerLink="/login" class="login-link">Login</a>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="navbar-categories" *ngIf="categories.length">
+    <button
+      *ngFor="let cat of categories"
+      class="category-chip"
+      [class.active]="selectedCategory === cat"
+      (click)="selectCategory(cat)"
+    >
+      {{ cat === 'all' ? 'All' : cat }}
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,101 @@
+<app-navbar></app-navbar>
+
+<div class="page-container">
+  <div class="page-header">
+    <h1>Shop Our Products</h1>
+    <p>Quality electronics, delivered fast.</p>
+  </div>
+
+  <div class="toast" *ngIf="addedMessage">{{ addedMessage }}</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  <div *ngIf="isLoading" class="loading">Loading products...</div>
+
+  <p class="no-results" *ngIf="!isLoading && products.length === 0">
+    No products match your search.
+  </p>
+
+  <div class="product-grid" *ngIf="!isLoading">
+    <div class="product-card" *ngFor="let product of products">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name" />
+        <span class="stock-badge" *ngIf="product.stockQuantity === 0">Out of Stock</span>
+        <span class="stock-badge low" *ngIf="product.stockQuantity > 0 && product.stockQuantity <= 5">
+          Only {{ product.stockQuantity }} left
+        </span>
+      </div>
+
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p class="description">{{ product.description }}</p>
+        <p class="price">₹{{ product.price }}</p>
+
+        <div class="rating-summary" (click)="toggleReviews(product)">
+          <span class="stars">
+            <span *ngFor="let s of starArray" [class.filled]="s <= (product.averageRating || 0)">★</span>
+          </span>
+          <span class="review-count">
+            {{ product.reviewCount > 0 ? (product.averageRating | number:'1.1-1') + ' (' + product.reviewCount + ')' : 'No reviews yet' }}
+          </span>
+        </div>
+
+        <div class="quantity-stepper" *ngIf="product.stockQuantity > 0">
+          <button (click)="decrementQty(product)">−</button>
+          <span>{{ quantities[product.id] }}</span>
+          <button (click)="incrementQty(product)">+</button>
+        </div>
+
+        <button
+          class="add-to-cart-btn"
+          (click)="addToCart(product)"
+          [disabled]="product.stockQuantity === 0"
+        >
+          {{ product.stockQuantity === 0 ? 'Out of Stock' : 'Add to Cart' }}
+        </button>
+      </div>
+
+      <div class="review-panel" *ngIf="expandedProductId === product.id">
+        <div class="review-list" *ngIf="reviews[product.id]?.length">
+          <div class="review-item" *ngFor="let review of reviews[product.id]">
+            <div class="review-header">
+              <strong>{{ review.reviewerName }}</strong>
+              <span class="review-stars">
+                <span *ngFor="let s of starArray" [class.filled]="s <= review.rating">★</span>
+              </span>
+            </div>
+            <p class="review-comment" *ngIf="review.comment">{{ review.comment }}</p>
+          </div>
+        </div>
+        <p class="no-reviews" *ngIf="reviews[product.id] && reviews[product.id].length === 0">
+          No reviews yet — be the first!
+        </p>
+
+        <div class="review-form">
+          <label>Your Rating</label>
+          <div class="star-picker">
+            <span
+              *ngFor="let s of starArray"
+              [class.filled]="s <= newReview.rating"
+              (click)="newReview.rating = s"
+            >★</span>
+          </div>
+          <textarea
+            placeholder="Share your thoughts (optional)"
+            [(ngModel)]="newReview.comment"
+            name="comment-{{product.id}}"
+          ></textarea>
+          <button class="submit-review-btn" (click)="submitReview(product)">Submit Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pagination" *ngIf="!isLoading && totalPages > 1">
+    <button
+      *ngFor="let pageNum of pageNumbers"
+      [class.active]="pageNum === currentPage"
+      (click)="goToPage(pageNum)"
+    >
+      {{ pageNum + 1 }}
+    </button>
+  </div>
+</div>

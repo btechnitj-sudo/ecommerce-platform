@@ -1,0 +1,202 @@
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+
+  h1 {
+    color: var(--color-dark);
+  }
+
+  p {
+    color: var(--color-text-light);
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #eee;
+
+  button {
+    background: none;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-light);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+
+    &.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+  }
+}
+
+.success-message {
+  background: #e6f7ed;
+  color: #1a7a3f;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  background: #fdeaea;
+  color: #b02a2a;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.add-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+
+  &:hover { background: var(--color-primary-dark); }
+}
+
+.product-form {
+  background: white;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 500px;
+
+  h3 {
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+  }
+
+  .form-row {
+    margin-bottom: 1rem;
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      color: var(--color-text-light);
+      font-size: 0.9rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+
+    button {
+      padding: 0.6rem 1.2rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .save-btn {
+      background: var(--color-primary);
+      color: white;
+
+      &:hover { background: var(--color-primary-dark); }
+    }
+
+    .cancel-btn {
+      background: #eee;
+      color: var(--color-dark);
+
+      &:hover { background: #ddd; }
+    }
+  }
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  th, td {
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+  }
+
+  th {
+    background: #fafafa;
+    color: var(--color-text-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.03em;
+  }
+
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--radius);
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .edit-btn {
+      background: #eef2ff;
+      color: #3b4bdb;
+      &:hover { background: #dde3fd; }
+    }
+
+    .delete-btn {
+      background: #fdeaea;
+      color: #b02a2a;
+      &:hover { background: #f9d5d5; }
+    }
+  }
+
+  .status-badge {
+    background: #eef7ee;
+    color: #2a7a3f;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+.no-results {
+  text-align: center;
+  color: var(--color-text-light);
+  padding: 2rem;
+}
