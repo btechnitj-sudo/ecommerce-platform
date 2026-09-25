@@ -19,6 +19,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+      - name: Grant execute permission for mvnw
+        run: chmod +x mvnw
       - name: Build and test
         run: ./mvnw clean verify
 
@@ -34,6 +36,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+      - name: Grant execute permission for mvnw
+        run: chmod +x mvnw
       - name: Build and test
         run: ./mvnw clean verify
 
@@ -49,6 +53,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+      - name: Grant execute permission for mvnw
+        run: chmod +x mvnw
       - name: Build and test
         run: ./mvnw clean verify
 
@@ -64,6 +70,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+      - name: Grant execute permission for mvnw
+        run: chmod +x mvnw
       - name: Build and test
         run: ./mvnw clean verify
 
@@ -79,6 +87,8 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+      - name: Grant execute permission for mvnw
+        run: chmod +x mvnw
       - name: Build and test
         run: ./mvnw clean verify
 
